@@ -50,8 +50,17 @@ const encodeFunction = () => {
                 encodedArr.push(tempVal);
             }
         }
+        if (charactersArr[i] === 'ź') {
+            tempVal = 'a';
+            encodedArr.push(tempVal);
+        }
+        if (charactersArr[i] === 'ż') {
+            tempVal = 'ą';
+            encodedArr.push(tempVal);
+        }
         console.log('encodedArr', encodedArr);
     }
+
     const encodedString = encodedArr.join('');
     displayEncoded.innerHTML = `ENCODED PHRASE: ${encodedString}`;
 }
