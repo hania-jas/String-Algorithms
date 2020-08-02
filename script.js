@@ -11,21 +11,23 @@ const alphabet = ['a', 'ą', 'b', 'c', 'ć', 'd', 'e', 'ę', 'f', 'g', 'h', 'i',
 const splitWordToLetters = () => {
     const inputValue = input.value;
     const charactersArr = inputValue.split('');
-    return [charactersArr, inputValue];
+    return {
+        charactersArr,
+        inputValue
+    };
 }
 
 const checkIfWordIsPalindrome = () => {
     let returnedValuesFromSplitWordFunction = splitWordToLetters();
-    const charactersArr = returnedValuesFromSplitWordFunction[0];
+    const charactersArr = returnedValuesFromSplitWordFunction.charactersArr;
     const reversedCharacters = [];
 
     for (let i = charactersArr.length - 1; i >= 0; i--) {
         reversedCharacters.push(charactersArr[i]);
     }
-    console.log('reversedCharacters', reversedCharacters)
     const reversedString = reversedCharacters.join('');
 
-    if (returnedValuesFromSplitWordFunction[1] === reversedString) {
+    if (returnedValuesFromSplitWordFunction.inputValue === reversedString) {
         alert('PALINDROME!');
     } else {
         alert('TRY AGAIN');
@@ -36,17 +38,17 @@ const checkIfWordIsPalindrome = () => {
 
 const encodeFunction = () => {
     let returnedValuesFromSplitWordFunction = splitWordToLetters();
-    const charactersArr = returnedValuesFromSplitWordFunction[0];
+    const charactersArr = returnedValuesFromSplitWordFunction.charactersArr;
     const encodedArr = [];
 
     for (let i = 0; i < charactersArr.length; i++) {
-        for (let j = 0; j < alphabet.length; j++) {
 
-            if (charactersArr[i] === alphabet[j] && charactersArr[i] !== 'ż' && charactersArr[i] !== 'ź') {
-                const tempVal = alphabet[j += 2];
-                encodedArr.push(tempVal);
-            }
+        if (charactersArr[i] !== 'ż' && charactersArr[i] !== 'ź') {
+            let indexOfCharactersArrInAlphabet = alphabet.indexOf(charactersArr[i]);
+            const tempVal = alphabet[indexOfCharactersArrInAlphabet += 2];
+            encodedArr.push(tempVal);
         }
+
         if (charactersArr[i] === 'ź') {
             tempVal = alphabet[0];
             encodedArr.push(tempVal);
@@ -55,7 +57,6 @@ const encodeFunction = () => {
             tempVal = alphabet[1];
             encodedArr.push(tempVal);
         }
-        console.log('encodedArr', encodedArr);
     }
 
     const encodedString = encodedArr.join('');
@@ -68,11 +69,10 @@ const decodeFunction = () => {
     const decodedArr = [];
 
     for (let i = 0; i < encodedArr.length; i++) {
-        console.log(encodedArr[i]);
+
         for (let j = alphabet.length; j > 0; j--) {
             if (encodedArr[i] === alphabet[j] && encodedArr[i] !== 'a' && encodedArr[i] !== 'ą') {
                 const nextTempVal = alphabet[j -= 2];
-                console.log('nextTempVal', nextTempVal);
                 decodedArr.push(nextTempVal);
             }
         }
