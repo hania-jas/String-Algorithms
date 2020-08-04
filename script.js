@@ -33,7 +33,6 @@ const checkIfWordIsPalindrome = () => {
         alert('TRY AGAIN');
     }
     displayReversed.innerHTML = `REVERSED:  ${reversedString}`;
-
 }
 
 const encodeFunction = () => {
@@ -42,14 +41,11 @@ const encodeFunction = () => {
     let encodedArr = [];
 
     for (let i = 0; i < charactersArr.length; i++) {
-
         if (charactersArr[i] !== alphabet[alphabet.length - 1] && charactersArr[i] !== alphabet[alphabet.length - 2]) {
             let indexOfCharactersArrInAlphabet = alphabet.indexOf(charactersArr[i]);
             const tempVal = alphabet[indexOfCharactersArrInAlphabet + 2];
             encodedArr.push(tempVal);
-
         }
-
         if (charactersArr[i] === alphabet[alphabet.length - 2]) {
             tempVal = alphabet[0];
             encodedArr.push(tempVal);
@@ -58,8 +54,6 @@ const encodeFunction = () => {
             tempVal = alphabet[1];
             encodedArr.push(tempVal);
         }
-
-
     }
 
     const encodedString = encodedArr.join('');
@@ -72,8 +66,6 @@ const decodeFunction = () => {
     let decodedArr = [];
 
     for (let i = 0; i < encodedArr.length; i++) {
-
-
         if (encodedArr[i] !== alphabet[0] && encodedArr[i] !== alphabet[1]) {
             let indexOfCharactersArrInAlphabet = alphabet.indexOf(encodedArr[i]);
             const nextTempVal = alphabet[indexOfCharactersArrInAlphabet - 2];
